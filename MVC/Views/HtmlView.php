@@ -4,7 +4,7 @@ namespace MVC\Views;
 
 class HtmlView extends ViewFactory
 {
-	const LAYOUT = <<<HTML
+    const LAYOUT = <<<HTML
 	<!DOCTYPE html>
 	<html lang="ru">
 	<head>
@@ -17,22 +17,22 @@ class HtmlView extends ViewFactory
 	</html>
 	HTML;
 
-	protected $replacements;
+    protected $replacements;
 
-	public function __construct($decorator)
-	{
-		$this->replacements = [
-			'{{{title}}}' => $decorator->title(),
-			'{{{body}}}' => $decorator->body()
-		];
-	}
+    public function __construct($decorator)
+    {
+        $this->replacements = [
+            '{{{title}}}' => $decorator->title(),
+            '{{{body}}}' => $decorator->body()
+        ];
+    }
 
-	public function render()
-	{
-		return str_replace(
-			array_keys($this->replacements),
-			array_values($this->replacements),
-			self::LAYOUT
-		);
-	}
+    public function render()
+    {
+        return str_replace(
+            array_keys($this->replacements),
+            array_values($this->replacements),
+            self::LAYOUT
+        );
+    }
 }
