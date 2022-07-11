@@ -2,25 +2,25 @@
 
 namespace MVC\Decorators;
 
-class UsersDecorator extends DecoratorFactory
+class PagesDecorator extends DecoratorFactory
 {
-    public $users;
+    public $pages;
 
-    public function __construct($users)
+    public function __construct($pages)
     {
-        $this->users = $users;
+        $this->pages = $pages;
     }
 
     public function title()
     {
-        return 'Users';
+        return 'Pages';
     }
 
     public function collection_render($call, $separator = '<br />')
     {
         return implode(
             $separator,
-            array_map($call, $this->users->collection)
+            array_map($call, $this->pages->collection)
         );
     }
 
@@ -28,7 +28,7 @@ class UsersDecorator extends DecoratorFactory
     {
         return $this->collection_render(
             function ($item) {
-                $decorated_item = new UserDecorator($item);
+                $decorated_item = new PageDecorator($item);
                 return $decorated_item->body();
             }
         );
@@ -38,7 +38,7 @@ class UsersDecorator extends DecoratorFactory
     {
         return $this->collection_render(
             function ($item) {
-                $decorated_item = new UserDecorator($item);
+                $decorated_item = new PageDecorator($item);
                 return $decorated_item->items();
             },
             ''
